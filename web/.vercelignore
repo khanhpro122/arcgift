@@ -3,6 +3,10 @@
 .env*
 e2e/
 testnet/
+# Test runner configs import e2e/ and testnet/; next build type-checks every .ts it finds.
+playwright.config.ts
+vitest.config.mts
+vitest.testnet.config.mts
 test-results/
 playwright-report/
 .next/
