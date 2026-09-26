@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+:root {
+  --tissue: #f3f1fa;
+  --surface: #ffffff;
+  --ink: #1b1b3a;
+  --muted: #6e6a8a;
+  --line: #e2dff0;
+  --box: #2775ca;
+  --box-deep: #1a5aa3;
+  --ribbon: #e9b949;
+  --ribbon-deep: #c9962a;
+  --good: #1f8a5b;
+  --bad: #c2413b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tissue: #14132b;
+    --surface: #1f1d3d;
+    --ink: #f1effa;
+    --muted: #a7a3c4;
+    --line: #34315a;
+    --box: #3b8ae0;
+    --box-deep: #2567b5;
+    --good: #4fc28b;
+    --bad: #ef7b73;
+  }
+}
+
+@theme inline {
+  --color-tissue: var(--tissue);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-box: var(--box);
+  --color-box-deep: var(--box-deep);
+  --color-ribbon: var(--ribbon);
+  --color-ribbon-deep: var(--ribbon-deep);
+  --color-good: var(--good);
+  --color-bad: var(--bad);
+  --font-sans: var(--font-bricolage);
+}
+
+body {
+  background: var(--tissue);
+  color: var(--ink);
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--box);
+  outline-offset: 3px;
+}
+
+/* Text fields show focus with their own ring (or their wrapper's), not a second outline. */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+
+/* Keep focused fields clear of the sticky header when the page scrolls to them. */
+html {
+  scroll-padding-top: 8rem;
+}
+
+/* ------------------------------------------------ gift box: the one orchestrated moment */
+
+.gift-lid,
+.gift-bow {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transition:
+    transform 700ms cubic-bezier(0.2, 0.9, 0.3, 1.2),
+    opacity 500ms ease;
+}
+
+.gift[data-state="idle"] .gift-body {
+  animation: gift-breathe 3.2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.gift[data-state="opening"] .gift-body {
+  animation: gift-shake 520ms ease-in-out 2;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.gift[data-state="open"] .gift-lid {
+  transform: translate(28px, -86px) rotate(18deg);
+  opacity: 0;
+}
+
+.gift[data-state="open"] .gift-bow {
+  transform: translate(-18px, -110px) rotate(-24deg) scale(0.8);
+  opacity: 0;
+}
+
+.gift-glow {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scaleY(0.2);
+  transition:
+    opacity 600ms ease 250ms,
+    transform 700ms ease 250ms;
+}
+
+.gift[data-state="open"] .gift-glow {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.sparkle {
+  opacity: 0;
+}
+
+.gift[data-state="open"] .sparkle {
+  animation: sparkle 1.6s ease-out both;
+  animation-delay: var(--delay, 350ms);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.reveal-amount {
+  animation: rise 700ms cubic-bezier(0.2, 0.9, 0.3, 1.15) 350ms both;
+}
+
+.reveal-note {
+  animation: rise 600ms cubic-bezier(0.2, 0.9, 0.3, 1.15) 150ms both;
+}
+
+@keyframes gift-breathe {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes gift-shake {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.6) translateY(-12px);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gift *,
+  .reveal-amount,
+  .reveal-note {
+    animation: none !important;
+    transition: none !important;
+  }
+}

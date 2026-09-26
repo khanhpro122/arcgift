@@ -1,0 +1,19 @@
+{
+  "name": "arc-gift",
+  "private": true,
+  "description": "Send USDC like a gift on Arc: one link, fixed or random split, reclaim after expiry.",
+  "scripts": {
+    "test": "npm run test:contracts && npm run test:web",
+    "test:contracts": "cd contracts && forge test",
+    "test:web": "npm --prefix web test",
+    "test:e2e": "npm --prefix web run test:e2e",
+    "lint": "cd contracts && forge fmt --check && forge lint && cd .. && npm --prefix web run lint",
+    "typecheck": "npm --prefix web run typecheck",
+    "build": "cd contracts && forge build && cd .. && node scripts/sync-abi.mjs && npm --prefix web run build",
+    "preflight:testnet": "npm --prefix web run preflight -- ../contracts/.env.testnet",
+    "preflight:mainnet": "npm --prefix web run preflight -- ../contracts/.env.mainnet",
+    "preflight:app:testnet": "npm --prefix web run preflight -- --network testnet",
+    "preflight:app:mainnet": "npm --prefix web run preflight -- --network mainnet",
+    "test:testnet": "npm --prefix web run test:testnet"
+  }
+}

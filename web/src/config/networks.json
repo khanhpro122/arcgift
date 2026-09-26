@@ -1,0 +1,24 @@
+{
+  "testnet": {
+    "id": "testnet",
+    "name": "Testnet",
+    "chainName": "Arc Testnet",
+    "chainId": 5042002,
+    "rpcUrl": "https://rpc.testnet.arc.network",
+    "explorerUrl": "https://testnet.arcscan.app",
+    "usdcAddress": "0x3600000000000000000000000000000000000000",
+    "usdcDecimals": 6,
+    "giftContractAddress": "0x3A08826cFFF2759aeEA8086CE5a8FAEcbD0653B2"
+  },
+  "mainnet": {
+    "id": "mainnet",
+    "name": "Mainnet",
+    "chainName": "Arc Mainnet",
+    "chainId": 5042,
+    "rpcUrl": "https://rpc.mainnet.arc.io",
+    "explorerUrl": "https://explorer.arc.io",
+    "usdcAddress": "0x3600000000000000000000000000000000000000",
+    "usdcDecimals": 6,
+    "giftContractAddress": "0x7969895bc1f35ceC84f9AE587cEae073E22F4E63"
+  }
+}

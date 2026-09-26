@@ -1,0 +1,12 @@
+cache/
+out/
+broadcast/*/*/dry-run/
+.env
+.env.*
+!.env.example
+.testnet-wallets.txt
+
+# Claude
+.claude/
+# Local anvil deploy runs (noise); real testnet/mainnet broadcasts are kept
+broadcast/*/31337/

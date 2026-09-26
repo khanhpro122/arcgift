@@ -1,0 +1,10 @@
+# Never upload local env files, test code or local build dirs. The app needs no env vars:
+# every network value comes from src/config/networks.json.
+.env*
+e2e/
+testnet/
+test-results/
+playwright-report/
+.next/
+.next-e2e/
+.next-prod/
